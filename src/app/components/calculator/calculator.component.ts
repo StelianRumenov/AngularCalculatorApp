@@ -1,4 +1,4 @@
-import { Component, HostListener, inject, OnInit } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { CalculatorService } from '../../services/calculator.service';
@@ -12,8 +12,9 @@ import { HistoryService } from '../../services/history.service';
   styleUrls: ['./calculator.component.css'],
 })
 export class CalculatorComponent {
-  public calculatorService = inject(CalculatorService);
-  constructor(private historyService: HistoryService, private router: Router) {}
+  private calculatorService = inject(CalculatorService);
+  private historyService = inject(HistoryService);
+  private router = inject(Router);
 
   display$ = this.calculatorService.display$;
 
@@ -49,10 +50,13 @@ export class CalculatorComponent {
 
   calculate(): void {
     const expression = this.calculatorService.performCalculation();
-    if (expression) {
-      const result = this.calculatorService.getCurrentDisplay();
-      this.historyService.addCalculation(expression, result);
+
+    if (!expression) {
+      // e.g., show an error message or log to console
+      console.warn('Invalid expression, skipping history addition.');
     }
+    const result = this.calculatorService.getCurrentDisplay();
+    this.historyService.addCalculation(expression, result);
   }
 
   clearEntry(): void {

@@ -12,9 +12,8 @@ import { HistoryService } from '../../services/history.service';
 })
 export class HistoryComponent {
   private historyService = inject(HistoryService);
+  private router = inject(Router);
   history$ = this.historyService.history$;
-
-  constructor(private router: Router) {}
 
   clearHistory(): void {
     this.historyService.clearHistory();
