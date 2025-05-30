@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    @if (history$ | async as history) { @if (history.length > 0) {
+    @if (history$ | async; as history) { @if (history.length > 0) {
     <div class="history-list">
       @for (calc of history; track calc.timestamp) {
       <div class="history-item">
