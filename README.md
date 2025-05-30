@@ -1,59 +1,158 @@
-# CalculatorApp
+# Angular Calculator Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.0.
+A simple calculator application built with Angular 20, demonstrating core Angular concepts including Components, Services, and Routing.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- Basic arithmetic operations (addition, subtraction, multiplication, division)
+- Clear and All Clear functionality
+- Decimal number support
+- Error handling for division by zero
+- Keyboard support
+- Responsive design
+- Memory operations (M+, M-, MR, MC)
+- History view with routing
+
+## Architecture Decisions
+
+### 1. Component Structure
+
+- **CalculatorComponent**: Main calculator interface with button grid and display
+- **HistoryComponent**: Separate view for calculation history
+- **AppComponent**: Root component with navigation
+
+### 2. Service Layer
+
+- **CalculatorService**: Core calculation logic and state management
+- **HistoryService**: Manages calculation history
+
+### 3. Routing
+
+- `/calculator` - Main calculator view (default)
+- `/history` - Calculation history view
+
+## Algorithm Explanation
+
+### Calculation Logic
+
+The calculator uses a state-based approach:
+
+1. **Input Handling**: Numbers and operators are processed based on current state
+2. **State Management**: Tracks current number, previous number, operator, and display value
+3. **Operation Execution**: Performs calculations when equals is pressed or new operator is entered
+4. **Error Handling**: Validates operations and handles edge cases
+
+### Key Methods
+
+- `inputNumber(num: string)`: Handles numeric input with decimal support
+- `inputOperator(op: string)`: Manages operator input and chain calculations
+- `calculate()`: Executes pending operations
+- `clear()` / `allClear()`: Reset functionality
+
+## Edge Cases Handled
+
+1. **Division by Zero**: Returns "Error", displayed as "Infinity" and resets calculator
+2. **Multiple Decimals**: Prevents multiple decimal points in same number
+3. **Operator Chaining**: Allows continuous calculations (e.g., 5 + 3 \* 2)
+4. **Leading Zeros**: Handles numbers starting with 0 properly
+5. **Memory Operations**: Validates memory recall when memory is empty
+6. **Large Numbers**: Handles display overflow with scientific notation
+
+## Installation and Setup
+
+### Prerequisites
+
+- Node.js (v20.19 or higher)
+- npm or yarn
+- Angular CLI
+
+### Installation Steps
+
+1. **Clone or extract the project**
+
+   ```bash
+   # If using git
+   git clone <repository-url>
+   cd angular-calculator
+
+   # Or extract zip file
+   unzip angular-calculator.zip
+   cd angular-calculator
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Run the application**
+
+   ```bash
+   ng serve
+   ```
+
+4. **Open in browser**
+   Navigate to `http://localhost:4200`
+
+### Alternative Setup (if Angular CLI not installed)
 
 ```bash
+npm install -g @angular/cli
+ng new angular-calculator
+# Copy the source files into the new project
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Usage
 
-## Code scaffolding
+### Basic Operations
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Click number buttons to input values
+- Click operator buttons (+, -, ×, ÷) for operations
+- Press = to calculate result
+- Use C to clear current input, AC to clear all
 
-```bash
-ng generate component component-name
-```
+### Memory Functions
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- **M+**: Add current display to memory
+- **M-**: Subtract current display from memory
+- **MR**: Recall memory value
+- **MC**: Clear memory
 
-```bash
-ng generate --help
-```
+### Keyboard Support
 
-## Building
+- Numbers: 0-9
+- Operators: +, -, \*, /
+- Enter/= : Calculate
+- Escape/C: Clear
+- Backspace: Delete last digit
 
-To build the project run:
+### Navigation
 
-```bash
-ng build
-```
+- Use the "History" button to view calculation history
+- Use "Calculator" button to return to main calculator
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Technical Implementation
 
-## Running unit tests
+### State Management
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+The calculator maintains state through the CalculatorService using reactive patterns:
 
-```bash
-ng test
-```
+- Current display value
+- Previous operand
+- Current operator
+- Memory value
+- Calculation history
 
-## Running end-to-end tests
+### Styling Approach
 
-For end-to-end (e2e) testing, run:
+CSS without external libraries
 
-```bash
-ng e2e
-```
+## Development Notes
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Uses Angular 20 with standalone components
+- Implements OnPush change detection for performance
+- Uses TypeScript strict mode
+- Responsive design supports mobile and desktop
