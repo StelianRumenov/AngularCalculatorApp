@@ -1,0 +1,33 @@
+<div class="history-container">
+  <div class="history-panel">
+    <div class="header">
+      <h2>Calculation History</h2>
+      <div class="header-actions">
+        <button class="btn btn-clear" (click)="clearHistory()">
+          Clear All
+        </button>
+        <button class="btn btn-back" (click)="goBack()">Calculator</button>
+      </div>
+    </div>
+
+    <div
+      class="history-list"
+      *ngIf="(history$ | async)?.length; else noHistory"
+    >
+      <div class="history-item" *ngFor="let calc of history$ | async">
+        <div class="calculation">
+          <div class="expression">{{ calc.expression }}</div>
+          <div class="result">= {{ calc.result }}</div>
+        </div>
+        <div class="timestamp">{{ calc.timestamp | date : "short" }}</div>
+      </div>
+    </div>
+
+    <ng-template #noHistory>
+      <div class="no-history">
+        <p>No calculations yet</p>
+        <p>Start calculating to see your history here</p>
+      </div>
+    </ng-template>
+  </div>
+</div>

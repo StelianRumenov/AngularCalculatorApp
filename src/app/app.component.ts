@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrls: ['../styles.css'],
+  templateUrl: 'app.component.html',
+  styleUrls: ['./app.component.css'],
 })
-export class App {
-  protected title = 'calculatorApp';
+export class AppComponent {
+  title = 'angular-calculator';
 }

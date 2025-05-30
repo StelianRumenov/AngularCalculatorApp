@@ -1,3 +1,10 @@
 import { Routes } from '@angular/router';
+import { CalculatorComponent } from './components/calculator/calculator.component';
+import { HistoryComponent } from './components/history/history.component';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  { path: '', redirectTo: '/calculator', pathMatch: 'full' },
+  { path: 'calculator', component: CalculatorComponent },
+  { path: 'history', component: HistoryComponent },
+  { path: '**', redirectTo: '/calculator' },
+];

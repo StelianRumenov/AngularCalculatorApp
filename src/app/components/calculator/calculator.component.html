@@ -1,0 +1,49 @@
+<div class="calculator-container">
+  <div class="calculator">
+    <div class="display">
+      <div class="display-value">{{ display$ | async }}</div>
+    </div>
+
+    <div class="button-grid">
+      <!-- First Row -->
+      <button class="btn btn-function" (click)="memoryClear()">MC</button>
+      <button class="btn btn-function" (click)="memoryRecall()">MR</button>
+      <button class="btn btn-function" (click)="memoryAdd()">M+</button>
+      <button class="btn btn-function" (click)="memorySubtract()">M-</button>
+
+      <!-- Second Row -->
+      <button class="btn btn-clear" (click)="allClear()">AC</button>
+      <button class="btn btn-clear" (click)="clearEntry()">C</button>
+      <button class="btn btn-operator" (click)="inputOperator('÷')">÷</button>
+      <button class="btn btn-operator" (click)="inputOperator('×')">×</button>
+
+      <!-- Third Row -->
+      <button class="btn btn-number" (click)="inputNumber('7')">7</button>
+      <button class="btn btn-number" (click)="inputNumber('8')">8</button>
+      <button class="btn btn-number" (click)="inputNumber('9')">9</button>
+      <button class="btn btn-operator" (click)="inputOperator('-')">-</button>
+
+      <!-- Fourth Row -->
+      <button class="btn btn-number" (click)="inputNumber('4')">4</button>
+      <button class="btn btn-number" (click)="inputNumber('5')">5</button>
+      <button class="btn btn-number" (click)="inputNumber('6')">6</button>
+      <button class="btn btn-operator" (click)="inputOperator('+')">+</button>
+
+      <!-- Fifth Row -->
+      <button class="btn btn-number" (click)="inputNumber('1')">1</button>
+      <button class="btn btn-number" (click)="inputNumber('2')">2</button>
+      <button class="btn btn-number" (click)="inputNumber('3')">3</button>
+      <button class="btn btn-equals span-2" (click)="calculate()">=</button>
+
+      <!-- Sixth Row -->
+      <button class="btn btn-number span-2" (click)="inputNumber('0')">
+        0
+      </button>
+      <button class="btn btn-number" (click)="inputNumber('.')">.</button>
+    </div>
+
+    <div class="navigation">
+      <button class="btn btn-nav" (click)="goToHistory()">History</button>
+    </div>
+  </div>
+</div>
