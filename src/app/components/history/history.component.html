@@ -10,24 +10,23 @@
       </div>
     </div>
 
-    <div
-      class="history-list"
-      *ngIf="(history$ | async)?.length; else noHistory"
-    >
-      <div class="history-item" *ngFor="let calc of history$ | async">
+    @if (history$ | async as history) { @if (history.length > 0) {
+    <div class="history-list">
+      @for (calc of history; track calc.timestamp) {
+      <div class="history-item">
         <div class="calculation">
           <div class="expression">{{ calc.expression }}</div>
           <div class="result">= {{ calc.result }}</div>
         </div>
         <div class="timestamp">{{ calc.timestamp | date : "short" }}</div>
       </div>
+      }
     </div>
-
-    <ng-template #noHistory>
-      <div class="no-history">
-        <p>No calculations yet</p>
-        <p>Start calculating to see your history here</p>
-      </div>
-    </ng-template>
+    } @else {
+    <div class="no-history">
+      <p>No calculations yet</p>
+      <p>Start calculating to see your history here</p>
+    </div>
+    } }
   </div>
 </div>
